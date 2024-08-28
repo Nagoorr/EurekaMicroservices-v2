@@ -1,0 +1,9 @@
+build:
+  version: "1.0"
+account:
+  message: "Welcome to DEV Profile Banking Account Related APIs Information"
+  contactDetails:
+    name: "Nagoor"
+    email: "nagoor@gmail.com"
+  onCallSupport:
+    - (+91)9676107483
