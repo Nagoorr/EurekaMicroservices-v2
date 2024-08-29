@@ -3,26 +3,21 @@ package com.eazybytes.accounts.mapper;
 import com.eazybytes.accounts.dto.CustomerDTO;
 import com.eazybytes.accounts.entity.Customer;
 
-import java.time.LocalDateTime;
-
 public class CustomerMapper {
 
-    public static Customer mapToCustomer(CustomerDTO customerDTO, Customer customer) {
-        customer.setName(customerDTO.getName());
-        customer.setEmail(customerDTO.getEmail());
-        customer.setMobileNumber(customerDTO.getMobileNumber());
-        customer.setCreatedBy(customerDTO.getName());
-        customer.setCreatedAt(LocalDateTime.now());
-        customer.setUpdatedBy(customerDTO.getName());
+    public static CustomerDTO mapToCustomerDto(Customer customer, CustomerDTO customerDto) {
+        customerDto.setName(customer.getName());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setMobileNumber(customer.getMobileNumber());
+        return customerDto;
+    }
+
+
+    public static Customer mapToCustomer(CustomerDTO customerDto, Customer customer) {
+        customer.setName(customerDto.getName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setMobileNumber(customerDto.getMobileNumber());
         return customer;
     }
 
-    public static CustomerDTO mapToCustomerDTO(Customer customer) {
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setCustomerId(customer.getCustomerId());
-        customerDTO.setName(customer.getName());
-        customerDTO.setEmail(customer.getEmail());
-        customerDTO.setMobileNumber(customer.getMobileNumber());
-        return customerDTO;
-    }
 }

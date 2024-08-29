@@ -12,15 +12,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-/*@ComponentScans({ @ComponentScan("com.eazybytes.cards.controller") })
-@EnableJpaRepositories("com.eazybytes.cards.repository")
-@EntityScan("com.eazybytes.cards.model")*/
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Cards microservice REST API Documentation",
 				description = "EazyBank Cards microservice REST API Documentation",
-				version = "v1",
+				version = "v2",
 				contact = @Contact(
 						name = "Nagoor Basha",
 						email = "nagoor@gmail.com",

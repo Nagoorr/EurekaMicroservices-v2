@@ -1,9 +1,13 @@
 package com.eazybytes.accounts.service;
 
-import com.eazybytes.accounts.dto.CustomerDTO;
-import com.eazybytes.accounts.entity.Customer;
+import com.eazybytes.accounts.dto.CustomerDetailsDto;
 
 public interface CustomerService {
-     void createCustomer(CustomerDTO customerDTO);
-     Customer findByMobileNumber(String mobileNumber);
+
+    /**
+     *
+     * @param mobileNumber - Input Mobile Number
+     * @return Accounts,Loans,Cards,Customer Details based on a given mobileNumber
+     */
+    public CustomerDetailsDto fetchCustomerDetails(String mobileNumber);
 }

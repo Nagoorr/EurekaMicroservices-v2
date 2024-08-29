@@ -1,6 +1,5 @@
 package com.eazybytes.accounts.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -20,4 +19,5 @@ public class CustomerDTO {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
+    private AccountsDTO accountsDTO;
 }

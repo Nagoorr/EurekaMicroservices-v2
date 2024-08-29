@@ -2,6 +2,18 @@ services:
   network-deploy-service:
     networks:
       - eazybank
+  microservice-db-config:
+    extends:
+      service: network-deploy-service
+    image: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U posgres"]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
+    environment:
+      POSTGRES_PASSWORD: root
 
   microservice-base-config:
     extends:
