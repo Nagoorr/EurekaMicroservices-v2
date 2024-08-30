@@ -63,6 +63,28 @@ services:
       file: common-config.yml
       service: microservice-base-config
 
+  eurekaserver:
+    image: "sadamnagoor/eurekaserver:v2"
+    container_name: eurekaserver-ms
+    ports:
+      - "8070:8070"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8070/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
+
   accounts:
     image: "sadamnagoor/accounts:v2"
     container_name: accounts-ms
@@ -78,7 +100,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://accountsdb:5432/accountsdb"
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
   loans:
     image: "sadamnagoor/loans:v2"
@@ -95,7 +117,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://loansdb:5432/loansdb"
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
   cards:
     image: "sadamnagoor/cards:v2"
@@ -112,7 +134,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://cardsdb:5432/cardsdb"
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eurekaserver-config
 
 networks:
   eazybank:
